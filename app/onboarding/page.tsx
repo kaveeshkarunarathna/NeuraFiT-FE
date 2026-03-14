@@ -88,26 +88,6 @@ export default function OnboardingPage() {
   const canProceedStep1 = !!fitnessGoal;
   const canSubmit = activityLevel && dietPreference;
 
-  const handleFinish = async () => {
-    setError("");
-    setIsSubmitting(true);
-    try {
-      await updateUser({
-        age: Number(age),
-        height: Number(height),
-        weight: Number(weight),
-        fitnessGoal,
-        activityLevel,
-        dietPreference,
-      });
-      router.push("/dashboard");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to save profile");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   if (isLoading || !isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
