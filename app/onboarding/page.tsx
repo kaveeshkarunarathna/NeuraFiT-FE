@@ -124,7 +124,19 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      
+      {/* Top bar */}
+      <div className="px-6 py-5 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-9 h-9 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
+            <Dumbbell className="w-4 h-4 text-foreground" />
+          </div>
+          <span className="text-lg font-bold text-foreground">NeuraFiT</span>
+        </div>
+        <span className="text-sm text-muted">
+          Step {step + 1} of {STEPS.length}
+        </span>
+      </div>
+
       {/* Progress bar */}
       <div className="px-6">
         <div className="h-1 bg-surface-hover rounded-full overflow-hidden">
