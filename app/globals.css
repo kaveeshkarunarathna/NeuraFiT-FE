@@ -32,7 +32,20 @@
   --color-primary-900: #336105;
   --color-primary-950: #173300;
 
-  
+  /* Secondary — Cool Graphite/Slate */
+  --color-secondary-50: #f6f6f6;
+  --color-secondary-100: #e7e7e7;
+  --color-secondary-200: #d1d1d1;
+  --color-secondary-300: #b0b0b0;
+  --color-secondary-400: #888888;
+  --color-secondary-500: #6d6d6d;
+  --color-secondary-600: #5d5d5d;
+  --color-secondary-700: #4f4f4f;
+  --color-secondary-800: #454545;
+  --color-secondary-900: #3d3d3d;
+  --color-secondary-950: #262626;
+
+ 
 }
 
 body {
