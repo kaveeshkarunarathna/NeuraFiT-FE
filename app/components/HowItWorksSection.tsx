@@ -11,7 +11,7 @@ export default function HowItWorksSection({
 }: HowItWorksSectionProps) {
   return (
     <section
-      className={`py-20 sm:py-28 lg:py-32 bg-white dark:bg-neutral-950 overflow-hidden ${className}`}
+      className={`py-20 sm:py-28 lg:py-32 bg-white dark:bg-[#000000] overflow-hidden ${className}`}
       id="how-it-works"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,14 +27,14 @@ export default function HowItWorksSection({
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-sm font-medium mb-4"
+            className="inline-block px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-950/50 text-primary-600 dark:text-primary-400 text-sm font-medium mb-4 border border-primary-100 dark:border-primary-900/40"
           >
             How It Works
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 dark:text-stone-50 mb-6">
             {title}
           </h2>
-          <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400">
+          <p className="text-lg sm:text-xl text-stone-600 dark:text-stone-400">
             {subtitle}
           </p>
         </motion.div>
@@ -42,7 +42,7 @@ export default function HowItWorksSection({
         {/* Steps */}
         <div className="relative">
           {/* Connection line - Desktop */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 dark:from-blue-800 dark:via-purple-800 dark:to-pink-800 -translate-y-1/2 rounded-full" />
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-stone-200 dark:bg-stone-800 -translate-y-1/2" />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
             {steps.map((step, index) => {
@@ -61,20 +61,20 @@ export default function HowItWorksSection({
                     {/* Step Number Circle */}
                     <motion.div
                       whileHover={{ scale: 1.1 }}
-                      className="relative z-10 w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/25 group-hover:shadow-xl group-hover:shadow-blue-500/30 transition-all duration-300"
+                      className="relative z-10 w-20 h-20 rounded-full bg-primary-500 flex items-center justify-center mb-6 shadow-lg shadow-primary-500/15 group-hover:shadow-xl group-hover:shadow-primary-500/20 transition-all duration-300"
                     >
                       <Icon className="w-8 h-8 text-white" />
                       {/* Step number badge */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-stone-900 dark:bg-stone-100 flex items-center justify-center text-white dark:text-stone-900 font-bold text-sm shadow-lg">
                         {step.stepNumber}
                       </div>
                     </motion.div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
+                    <h3 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-3">
                       {step.title}
                     </h3>
-                    <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-xs">
+                    <p className="text-stone-600 dark:text-stone-400 leading-relaxed max-w-xs">
                       {step.description}
                     </p>
                   </div>
@@ -85,7 +85,7 @@ export default function HowItWorksSection({
                       <motion.svg
                         animate={{ y: [0, 5, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
-                        className="w-6 h-6 text-blue-400"
+                        className="w-6 h-6 text-stone-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -113,14 +113,14 @@ export default function HowItWorksSection({
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center mt-16"
         >
-          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
+          <p className="text-stone-600 dark:text-stone-400 mb-6">
             Ready to transform your fitness journey?
           </p>
           <motion.a
             href="#cta"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary-500 hover:bg-primary-600 text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Start Your Journey
             <svg
