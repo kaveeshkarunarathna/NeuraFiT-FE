@@ -45,7 +45,18 @@
   --color-secondary-900: #3d3d3d;
   --color-secondary-950: #262626;
 
- 
+  /* Accent — Bright Lime / Neon */
+  --color-accent-50: #edffed;
+  --color-accent-100: #d1ffd1;
+  --color-accent-200: #a3ffa3;
+  --color-accent-300: #6eff6e;
+  --color-accent-400: #3bff3b;
+  --color-accent-500: #00ff00;
+  --color-accent-600: #00cc00;
+  --color-accent-700: #00a300;
+  --color-accent-800: #008000;
+  --color-accent-900: #006600;
+  --color-accent-950: #003300;
 }
 
 body {
