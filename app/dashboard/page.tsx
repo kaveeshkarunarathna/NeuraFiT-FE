@@ -243,7 +243,79 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      
+      {/* Main Container */}
+      <main className="max-w-7xl mx-auto px-6 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Left Column (Main Dashboard Area) */}
+          <div className="lg:col-span-8 space-y-8">
+            
+            {/* 1. Hero Welcome Widget (Glassmorphic) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-3xl bg-stone-900 border border-stone-800 p-8 shadow-2xl"
+            >
+              {/* Radial glow background effect */}
+              <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative z-10 w-full">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full">
+                  <div className="w-16 h-16 shrink-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl flex items-center justify-center text-black text-2xl font-bold shadow-lg shadow-primary-500/30 relative">
+                    {user.name.charAt(0).toUpperCase()}
+                    {/* Fire Streak Badge */}
+                    {(analyticsData?.streak || 0) > 0 && (
+                      <div className="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-extrabold px-2 py-0.5 rounded-full border-2 border-stone-900 shadow-[0_0_10px_rgba(220,38,38,0.5)] flex items-center gap-1 z-20" title={`${analyticsData?.streak} Day Streak!`}>
+                        🔥 {analyticsData?.streak}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between w-full">
+                      <h1 className="text-3xl font-extrabold text-white tracking-tight">
+                        Welcome back, {user.name.split(" ")[0]} 
+                      </h1>
+                      <button 
+                        onClick={() => setIsEditModalOpen(true)}
+                        className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-stone-950/50 hover:bg-stone-800 border border-stone-800 rounded-xl text-primary-400 font-medium transition-all ml-4 shrink-0"
+                      >
+                        <Edit className="w-4 h-4" /> Edit Profile
+                      </button>
+                    </div>
+                    <p className="text-stone-400 mt-1 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" /> 
+                      {analyticsData?.activePlanProgress 
+                        ? `Week ${Math.ceil((analyticsData.activePlanProgress.completedDays + 1) / 7)} • ${analyticsData.activePlanProgress.percentage}% Plan Completed` 
+                        : "AI Coach is ready for your next session"}
+                    </p>
+                    
+                    {/* Active Plan Progress Bar */}
+                    {analyticsData?.activePlanProgress && (
+                      <div className="mt-4 max-w-sm">
+                        <div className="flex justify-between text-xs font-bold text-stone-500 mb-1.5 uppercase tracking-wider">
+                           <span>{analyticsData.activePlanProgress.goal.replace(/_/g, ' ')} PLAN</span>
+                           <span className="text-primary-400">{analyticsData.activePlanProgress.completedDays} / {analyticsData.activePlanProgress.totalDays} Days</span>
+                        </div>
+                        <div className="h-1.5 bg-stone-800 rounded-full overflow-hidden">
+                           <motion.div 
+                             initial={{ width: 0 }}
+                             animate={{ width: `${analyticsData.activePlanProgress.percentage}%` }}
+                             transition={{ duration: 1, delay: 0.5 }}
+                             className="h-full bg-gradient-to-r from-primary-600 to-primary-400 rounded-full relative" 
+                           >
+                              <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-r from-transparent to-white/30 blur-sm" />
+                           </motion.div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            
+      </main>
 
       {/* Edit Profile Modal */}
       {isEditModalOpen && (
