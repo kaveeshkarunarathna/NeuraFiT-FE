@@ -314,7 +314,159 @@ export default function DashboardPage() {
               </div>
             </motion.div>
 
+            {/* 2. Interactive Quick Actions Bento Row */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  icon: Bot,
+                  label: "AI Coach",
+                  href: "/coach",
+                  color: "from-primary-500/20 to-stone-900",
+                  border: "border-primary-500/30",
+                  iconColor: "text-primary-400",
+                },
+                {
+                  icon: Dumbbell,
+                  label: "Workouts",
+                  href: "/workouts",
+                  color: "from-stone-800 to-stone-900",
+                  border: "border-stone-800",
+                  iconColor: "text-stone-300",
+                },
+                {
+                  icon: Utensils,
+                  label: "Meals",
+                  href: "/meals",
+                  color: "from-stone-800 to-stone-900",
+                  border: "border-stone-800",
+                  iconColor: "text-stone-300",
+                },
+                {
+                  icon: TrendingUp,
+                  label: "Progress",
+                  href: "/progress",
+                  color: "from-stone-800 to-stone-900",
+                  border: "border-stone-800",
+                  iconColor: "text-stone-300",
+                },
+              ].map((action, i) => (
+                <motion.div
+                  key={action.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                  className="h-full"
+                >
+                  <Link
+                    href={action.href}
+                    className={`block h-full bg-gradient-to-br ${action.color} border ${action.border} rounded-2xl p-5 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary-500/10 transition-all group relative overflow-hidden`}
+                  >
+                    <div className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                      <action.icon className="w-24 h-24" />
+                    </div>
+                    <action.icon className={`w-8 h-8 ${action.iconColor} mb-4`} />
+                    <div className="text-stone-100 font-bold">{action.label}</div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
             
+              {/* Activity Trend (Neon Glow styling) */}
+              <div className="bg-stone-950/50 backdrop-blur-md rounded-3xl p-6 shadow-xl border border-stone-800/50 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
+                <h3 className="text-stone-400 text-sm font-medium mb-6 flex items-center gap-2"><Activity className="w-4 h-4 text-primary-500" /> Activity Trend</h3>
+                <div className="h-48 w-full">
+                  {dataLoading ? (
+                    <div className="h-full flex items-center justify-center">
+                      <Loader2 className="w-6 h-6 text-primary-500 animate-spin" />
+                    </div>
+                  ) : progressLogs.filter(l => l.steps !== null).length > 0 ? (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={progressLogs.filter(l => l.steps !== null).map(log => ({ ...log, displayDate: new Date(log.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) }))}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#292524" vertical={false} />
+                        <XAxis dataKey="displayDate" stroke="#78716c" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis stroke="#78716c" fontSize={12} tickLine={false} axisLine={false} width={40} />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: '#1c1917', borderColor: '#292524', borderRadius: '12px' }}
+                          cursor={{ fill: '#292524', opacity: 0.4 }}
+                        />
+                        <Bar dataKey="steps" fill="#7CFF00" radius={[6, 6, 0, 0]} maxBarSize={30} style={{ filter: "drop-shadow(0 0 4px rgba(124, 255, 0, 0.3))" }} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  ) : (
+                    <div className="h-full flex items-center justify-center text-sm text-stone-500 text-center pb-8">
+                      No step data logged yet.
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column (Unified Vitals Sidebar) */}
+          <div className="lg:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-stone-900/60 backdrop-blur-xl border border-stone-800 rounded-3xl p-6 h-full shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <User className="w-5 h-5 text-primary-500" /> My Vitals
+                </h3>
+                <button 
+                  onClick={() => setIsEditModalOpen(true)} 
+                  className="p-2 text-stone-400 hover:text-primary-400 hover:bg-primary-500/10 rounded-xl transition-all sm:hidden"
+                >
+                  <Edit className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="space-y-3 flex-1 overflow-y-auto pr-2">
+                {statsCards.map((card, i) => (
+                  <motion.div
+                    key={card.label}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
+                    className="group flex items-center justify-between p-4 bg-stone-950/50 hover:bg-stone-800 border border-stone-800/50 rounded-2xl transition-all"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${card.color} border ${card.border}`}>
+                        <card.icon className={`w-5 h-5 ${card.iconColor}`} />
+                      </div>
+                      <div>
+                        <div className="text-xs text-stone-400 font-medium tracking-wide uppercase">{card.label}</div>
+                        {card.label === "Health Notes" && card.value !== "None reported" ? (
+                          <div className="flex flex-wrap gap-1.5 mt-1.5 md:max-w-[180px] max-w-[140px]">
+                            {String(card.value).split(',').map((cond, idx) => (
+                              <span key={idx} className="px-2 py-0.5 bg-red-500/10 border border-red-500/20 text-red-400 rounded-full text-[10px] font-bold break-words">
+                                {cond.trim()}
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="text-stone-100 font-bold text-sm max-w-[140px] truncate">{card.value}</div>
+                        )}
+                        {card.subText && (
+                          <div className="text-xs text-stone-600 mt-0.5">{card.subText}</div>
+                        )}
+                      </div>
+                    </div>
+                    {card.change && card.label === "Weight Tracking" && (
+                       <span className={`text-[10px] font-bold px-2 py-1 rounded-full whitespace-nowrap ${card.change.value < 0 ? "text-primary-500 bg-primary-500/10" : card.change.value > 0 ? "text-red-500 bg-red-500/10" : "text-stone-400 bg-stone-800"}`}>
+                         {card.change.value > 0 ? '+' : ''}{card.change.value}{card.change.unit}
+                       </span>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
       </main>
 
       {/* Edit Profile Modal */}
