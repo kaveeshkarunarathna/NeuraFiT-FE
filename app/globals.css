@@ -19,6 +19,19 @@
   --color-foreground: var(--text-foreground);
   --color-muted: var(--text-muted);
 
+  /* Primary — Neon Green (#7CFF00) */
+  --color-primary-50: #f2ffeb;
+  --color-primary-100: #dcffc2;
+  --color-primary-200: #b9ff85;
+  --color-primary-300: #8aff3d;
+  --color-primary-400: #74f500;
+  --color-primary-500: #7cff00; /* Main Highlight */
+  --color-primary-600: #66cc00; /* Bright Lime alternative */
+  --color-primary-700: #4d9900;
+  --color-primary-800: #3b7300;
+  --color-primary-900: #336105;
+  --color-primary-950: #173300;
+
   
 }
 
