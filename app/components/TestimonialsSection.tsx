@@ -16,10 +16,10 @@ function TestimonialCard({
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
-      className={`relative bg-white dark:bg-neutral-800 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}
+      className={`relative bg-white dark:bg-stone-900/60 rounded-2xl p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-sm hover:shadow-lg transition-all duration-300 ${className}`}
     >
       {/* Quote icon */}
-      <div className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+      <div className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center">
         <Quote className="w-4 h-4 text-white" />
       </div>
 
@@ -31,8 +31,8 @@ function TestimonialCard({
               key={i}
               className={`w-5 h-5 ${
                 i < testimonial.rating!
-                  ? "text-accent-400 fill-accent-400"
-                  : "text-neutral-300 dark:text-neutral-600"
+                  ? "text-primary-400 fill-accent-400"
+                  : "text-stone-300 dark:text-stone-700"
               }`}
             />
           ))}
@@ -40,13 +40,13 @@ function TestimonialCard({
       )}
 
       {/* Quote */}
-      <blockquote className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6 text-base sm:text-lg">
+      <blockquote className="text-stone-700 dark:text-stone-300 leading-relaxed mb-6 text-base sm:text-lg">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
 
       {/* Author */}
       <div className="flex items-center gap-4">
-        <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary-200 dark:ring-primary-800">
+        <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-stone-200 dark:ring-stone-700">
           <Image
             src={testimonial.avatar}
             alt={`${testimonial.author}'s avatar`}
@@ -55,10 +55,10 @@ function TestimonialCard({
           />
         </div>
         <div>
-          <div className="font-semibold text-neutral-900 dark:text-white">
+          <div className="font-semibold text-stone-900 dark:text-stone-100">
             {testimonial.author}
           </div>
-          <div className="text-sm text-neutral-500 dark:text-neutral-400">
+          <div className="text-sm text-stone-500 dark:text-stone-500">
             {testimonial.role}
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function TestimonialsSection({
 }: TestimonialsSectionProps) {
   return (
     <section
-      className={`py-20 sm:py-28 lg:py-32 bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-neutral-900 dark:via-neutral-950 dark:to-primary-950 ${className}`}
+      className={`py-20 sm:py-28 lg:py-32 bg-stone-50 dark:bg-[#141210] ${className}`}
       id="testimonials"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,14 +91,14 @@ export default function TestimonialsSection({
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-2 rounded-full bg-accent-100 dark:bg-accent-900/50 text-accent-700 dark:text-accent-300 text-sm font-medium mb-4"
+            className="inline-block px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-950/50 text-primary-600 dark:text-primary-400 text-sm font-medium mb-4 border border-primary-100 dark:border-primary-900/40"
           >
             Testimonials
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 dark:text-stone-50 mb-6">
             {title}
           </h2>
-          <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400">
+          <p className="text-lg sm:text-xl text-stone-600 dark:text-stone-400">
             {subtitle}
           </p>
         </motion.div>
@@ -126,10 +126,10 @@ export default function TestimonialsSection({
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 text-center"
         >
-          <p className="text-neutral-500 dark:text-neutral-400 mb-6">
+          <p className="text-stone-500 dark:text-stone-500 mb-6">
             Trusted by fitness enthusiasts worldwide
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+          <div className="flex flex-wrap justify-center items-center gap-8 opacity-50">
             {[
               "Featured in",
               "Apple App Store",
@@ -138,7 +138,7 @@ export default function TestimonialsSection({
             ].map((brand, index) => (
               <span
                 key={index}
-                className="text-neutral-400 dark:text-neutral-600 font-semibold text-lg"
+                className="text-stone-500 dark:text-stone-600 font-semibold text-lg"
               >
                 {brand}
               </span>

@@ -7,7 +7,6 @@ function FeatureCard({
   icon: Icon,
   title,
   description,
-  iconColor = "text-primary-500",
   className = "",
 }: FeatureCardProps) {
   return (
@@ -15,34 +14,26 @@ function FeatureCard({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
-      className={`group relative p-6 sm:p-8 bg-white dark:bg-neutral-800/50 rounded-2xl border border-neutral-100 dark:border-neutral-700/50 hover:border-primary-200 dark:hover:border-primary-700/50 shadow-sm hover:shadow-xl transition-all duration-300 ${className}`}
+      className={`group relative p-6 sm:p-8 bg-white dark:bg-stone-900/60 rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-primary-300 dark:hover:border-primary-800 shadow-sm hover:shadow-lg transition-all duration-300 ${className}`}
     >
-      {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-500/5 to-secondary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
       {/* Icon */}
       <div className="relative mb-5">
-        <div
-          className={`w-14 h-14 rounded-xl bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/50 dark:to-secondary-900/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
-        >
-          <Icon className={`w-7 h-7 ${iconColor}`} />
+        <div className="w-12 h-12 rounded-xl bg-primary-50 dark:bg-primary-950/40 border border-primary-100 dark:border-primary-900/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+          <Icon className="w-6 h-6 text-primary-500" />
         </div>
       </div>
 
       {/* Content */}
       <div className="relative">
-        <h3 className="text-lg sm:text-xl font-semibold text-neutral-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+        <h3 className="text-lg sm:text-xl font-semibold text-stone-900 dark:text-stone-100 mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
           {title}
         </h3>
-        <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm sm:text-base">
+        <p className="text-stone-600 dark:text-stone-400 leading-relaxed text-sm sm:text-base">
           {description}
         </p>
       </div>
-
-      {/* Decorative corner */}
-      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary-500/10 to-transparent rounded-tr-2xl rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </motion.div>
   );
 }
@@ -65,7 +56,7 @@ export default function FeaturesSection({
 
   return (
     <section
-      className={`py-20 sm:py-28 lg:py-32 bg-neutral-50 dark:bg-neutral-900 ${className}`}
+      className={`py-20 sm:py-28 lg:py-32 bg-stone-50 dark:bg-[#141210] ${className}`}
       id="features"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,14 +72,14 @@ export default function FeaturesSection({
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-sm font-medium mb-4"
+            className="inline-block px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-950/50 text-primary-600 dark:text-primary-400 text-sm font-medium mb-4 border border-primary-100 dark:border-primary-900/40"
           >
             Features
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 dark:text-stone-50 mb-6">
             {title}
           </h2>
-          <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400">
+          <p className="text-lg sm:text-xl text-stone-600 dark:text-stone-400">
             {subtitle}
           </p>
         </motion.div>
@@ -107,7 +98,6 @@ export default function FeaturesSection({
               icon={feature.icon}
               title={feature.title}
               description={feature.description}
-              iconColor={feature.iconColor}
             />
           ))}
         </motion.div>

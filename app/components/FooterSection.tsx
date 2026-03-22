@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { FooterSectionProps } from "../types";
 
 export default function FooterSection({
@@ -14,7 +15,7 @@ export default function FooterSection({
 }: FooterSectionProps) {
   return (
     <footer
-      className={`bg-neutral-900 dark:bg-neutral-950 text-white ${className}`}
+      className={`bg-stone-50 dark:bg-[#000000] border-t border-stone-200 dark:border-stone-800 ${className}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
@@ -30,16 +31,20 @@ export default function FooterSection({
             >
               {/* Logo */}
               <Link href="/" className="inline-block mb-4">
-                <span className="text-2xl font-bold bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                  {logoText}
-                </span>
+                <Image
+                  src="/neurafit-logo.png"
+                  alt="NeuraFiT Logo"
+                  width={150}
+                  height={40}
+                  className="h-8 w-auto"
+                />
               </Link>
-              <p className="text-neutral-400 mb-6 max-w-sm leading-relaxed">
+              <p className="text-stone-500 dark:text-stone-500 mb-6 max-w-sm leading-relaxed">
                 {tagline}
               </p>
 
               {/* Social Links */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
@@ -50,7 +55,7 @@ export default function FooterSection({
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-10 h-10 rounded-full bg-neutral-800 hover:bg-primary-600 flex items-center justify-center transition-colors duration-300"
+                      className="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary-500 hover:text-black text-stone-500 dark:text-stone-400 flex items-center justify-center transition-colors duration-300"
                       aria-label={`Follow us on ${social.platform}`}
                     >
                       <Icon className="w-5 h-5" />
@@ -69,7 +74,7 @@ export default function FooterSection({
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
               >
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-200 mb-4">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-4">
                   {group.title}
                 </h3>
                 <ul className="space-y-3">
@@ -77,7 +82,7 @@ export default function FooterSection({
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-neutral-400 hover:text-white transition-colors duration-200 text-sm"
+                        className="text-stone-600 dark:text-stone-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 text-sm"
                       >
                         {link.label}
                       </Link>
@@ -94,14 +99,14 @@ export default function FooterSection({
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="py-8 border-t border-neutral-800"
+          className="py-8 border-t border-stone-200 dark:border-stone-800"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h4 className="text-lg font-semibold text-white mb-1">
+              <h4 className="text-lg font-semibold text-stone-900 dark:text-stone-100 mb-1">
                 Stay in the loop
               </h4>
-              <p className="text-neutral-400 text-sm">
+              <p className="text-stone-500 dark:text-stone-500 text-sm">
                 Get fitness tips, updates, and exclusive offers.
               </p>
             </div>
@@ -109,12 +114,12 @@ export default function FooterSection({
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 md:w-64 px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-full text-white placeholder-neutral-500 focus:outline-none focus:border-primary-500 transition-colors"
+                className="flex-1 md:w-64 px-4 py-3 bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-full text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500/30 transition-colors"
                 aria-label="Email address for newsletter"
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-medium rounded-full hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 whitespace-nowrap"
+                className="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-black font-medium rounded-full transition-all duration-300 whitespace-nowrap"
               >
                 Subscribe
               </button>
@@ -123,25 +128,25 @@ export default function FooterSection({
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-neutral-800">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-500">
+        <div className="py-6 border-t border-stone-200 dark:border-stone-800">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-500 dark:text-stone-500">
             <p>{copyrightText}</p>
             <div className="flex items-center gap-6">
               <Link
                 href="/privacy"
-                className="hover:text-white transition-colors"
+                className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="hover:text-white transition-colors"
+                className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
               >
                 Terms of Service
               </Link>
               <Link
                 href="/cookies"
-                className="hover:text-white transition-colors"
+                className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
               >
                 Cookie Policy
               </Link>
