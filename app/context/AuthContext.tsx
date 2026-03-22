@@ -57,7 +57,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isAuthenticated = !!user && !!accessToken;
   const isOnboarded = !!user?.fitnessGoal;
 
-  
+  // Rehydrate session on mount
+  useEffect(() => {
+    const token = localStorage.getItem(STORAGE_KEYS.accessToken);
+    const storedUser = localStorage.getItem(STORAGE_KEYS.user);
+
+    if (token && storedUser) {
+      setAccessToken(token);
+      setUser(JSON.parse(storedUser));
+
+      // Validate token silently
+      api
+        .getProfile(token)
+        .then((freshUser) => {
+          setUser(freshUser);
+          localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(freshUser));
+        })
+        .catch(() => {
+          clearStorage();
+          setUser(null);
+          setAccessToken(null);
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
 
   // Listen for background token refreshes from api.ts
   useEffect(() => {
