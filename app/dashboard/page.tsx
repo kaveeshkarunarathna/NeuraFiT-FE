@@ -371,7 +371,43 @@ export default function DashboardPage() {
               ))}
             </div>
 
-            
+            {/* 3. Neon Analytics Overview Containers */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            >
+              {/* Weight Chart (Neon Glow styling) */}
+              <div className="bg-stone-950/50 backdrop-blur-md rounded-3xl p-6 shadow-xl border border-stone-800/50 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
+                <h3 className="text-stone-400 text-sm font-medium mb-6 flex items-center gap-2"><BarChart3 className="w-4 h-4 text-primary-500" /> Weight Progression</h3>
+                <div className="h-48 w-full">
+                  {dataLoading ? (
+                    <div className="h-full flex items-center justify-center">
+                      <Loader2 className="w-6 h-6 text-primary-500 animate-spin" />
+                    </div>
+                  ) : progressLogs.filter(l => l.weight !== null).length > 0 ? (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={progressLogs.filter(l => l.weight !== null).map(log => ({ ...log, displayDate: new Date(log.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) }))}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#292524" vertical={false} />
+                        <XAxis dataKey="displayDate" stroke="#78716c" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis stroke="#78716c" fontSize={12} tickLine={false} axisLine={false} domain={['auto', 'auto']} width={30} />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: '#1c1917', borderColor: '#292524', borderRadius: '12px', color: '#fff' }}
+                          itemStyle={{ color: '#7CFF00', fontWeight: 'bold' }}
+                        />
+                        <Line type="monotone" dataKey="weight" stroke="#7CFF00" strokeWidth={4} style={{ filter: "drop-shadow(0 0 6px rgba(124, 255, 0, 0.5))" }} dot={{ r: 0 }} activeDot={{ r: 6, fill: '#000', stroke: '#7CFF00', strokeWidth: 2 }} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  ) : (
+                    <div className="h-full flex items-center justify-center text-sm text-stone-500 text-center pb-8">
+                      No weight data logged yet.
+                    </div>
+                  )}
+                </div>
+              </div>
+
               {/* Activity Trend (Neon Glow styling) */}
               <div className="bg-stone-950/50 backdrop-blur-md rounded-3xl p-6 shadow-xl border border-stone-800/50 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
